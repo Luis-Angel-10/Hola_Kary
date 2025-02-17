@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+            gap: 20px;
+            max-width: 500px;
+            margin: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .btn button, .final-buttons a {
+            text-decoration: none;
+            color: #ffffff;
+            background: #ff6f61;
+            padding: 10px 25px;
+            border-radius: 8px;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0.5rem 1rem 3rem hsl(0, 0%, 70%);
+            transition: background 0.3s;
+        }
+
+        .btn button:hover, .final-buttons a:hover {
+            background: #e4572e;
+        }
+
+        .hidden-message {
+            font-size: 1.2rem;
+            color: #333;
+            margin-top: 20px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            display: none;
+        }
+
+        .final-message {
+            font-size: 1.5rem;
+            color: #000;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .final-buttons {
+            display: none;
+            gap: 25px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="hidden-message" id="introMessage"></div>
+        <div class="btn" id="buttonContainer">
+            <button onclick="showConfession()">Touch Me</button>
+        </div>
+        <div class="hidden-message" id="confessionMessage"></div>
+        <div class="final-message" id="finalMessage">¿Puedo salir contigo? 🥰</div>
+        <div class="final-buttons" id="finalButtons">
+            <a href="si.html">Si</a>
+            <a href="no2.html">No</a>
+        </div>
+    </div>
+
+    <script>
+        const introText = `Hola Kary, espero que te gustara la carta, se que la cajita no me quedo muy bien jaja, pero espero que te gustara y que me des la oportunidad de conocerte mejor.`;
+
+        const confessionText = ` Me estoy interesando de ti, la verdad no entiendo cómo, simplemente sucedió :3. Encontré en ti lo que no encontré en nadie más. No sé si es tu sonrisa, tu manera de ser, o lo inteligente que eres. Lo único que sé es que te admira muchísimo y me encantaría que me dieras la oportunidad de conocerte mejor.`;
+
+        function typeWriter(element, text, callback) {
+            let index = 0;
+            element.style.display = "block";
+            function write() {
+                if (index < text.length) {
+                    element.textContent += text[index];
+                    index++;
+                    setTimeout(write, 50);
+                } else if (callback) {
+                    callback();
+                }
+            }
+            write();
+        }
+
+        function showConfession() {
+            const buttonContainer = document.getElementById('buttonContainer');
+            buttonContainer.style.display = "none";
+
+            const introMessage = document.getElementById('introMessage');
+            const confessionMessage = document.getElementById('confessionMessage');
+            const finalMessage = document.getElementById('finalMessage');
+            const finalButtons = document.getElementById('finalButtons');
+
+            typeWriter(introMessage, introText, () => {
+                typeWriter(confessionMessage, confessionText, () => {
+                    finalMessage.style.display = "block";
+                    setTimeout(() => {
+                        finalButtons.style.display = "flex";
+                    }, 1000);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

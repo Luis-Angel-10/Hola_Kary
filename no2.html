@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Por qué estás aquí?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            max-width: 600px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        .message {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 20px;
+            display: none;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .btn {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
+
+        .btn a {
+            text-decoration: none;
+            color: #fff;
+            background: #ff6f61;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .btn a:hover {
+            background: #d9534f;
+        }
+
+        #btn-random {
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <p class="message" id="message"></p>
+        <div class="btn" id="buttons">
+            <a href="si.html">Sí</a>
+            <a href="#" id="btn-random">No</a>
+        </div>
+    </div>
+
+    <script>
+        const messageText = "Si estás aquí es porque dijiste que no, entiendo y respeto tu decisión, aunque yo creo que deberías pensarlo mejor, ¿Te gustaría salir conmigo?";
+        const messageElement = document.getElementById('message');
+        const buttonsElement = document.getElementById('buttons');
+        const btnRandom = document.getElementById('btn-random');
+        let index = 0;
+
+        function showMessage() {
+            messageElement.style.display = "block";
+            if (index < messageText.length) {
+                messageElement.textContent += messageText[index];
+                index++;
+                setTimeout(showMessage, 50);
+            } else {
+                buttonsElement.style.opacity = "1";
+            }
+        }
+
+        showMessage();
+
+        btnRandom.addEventListener('mouseover', () => {
+            const randomX = Math.floor(Math.random() * 400 - 200);
+            const randomY = Math.floor(Math.random() * 400 - 200);
+            btnRandom.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        });
+    </script>
+</body>
+
+</html>
