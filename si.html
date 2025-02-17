@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canciones</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #ffcc99; /* Color cálido */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .message {
+            text-align: center;
+            font-size: 1.5rem;
+            max-width: 600px;
+            line-height: 1.8;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .btn-surprise {
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: white;
+            background-color: #ff5733;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: none; /* Se oculta hasta que termine el mensaje */
+        }
+
+        .btn-surprise:hover {
+            background-color: #c70039;
+        }
+
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 80px; /* Aumenta el espacio entre las imágenes */
+            margin-top: 80px;
+            visibility: hidden; /* Inicialmente oculto */
+        }
+
+        .image-gallery a {
+            text-decoration: none; /* Quita el subrayado */
+        }
+
+        .image-gallery img {
+            width: 150px; /* Aumenta el tamaño de las imágenes */
+            height: 150px; /* Aumenta el tamaño de las imágenes */
+            object-fit: cover;
+            border-radius: 0px;
+            cursor: pointer; /* Cambia el cursor para indicar que es clickeable */
+        }
+
+        .image-text {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #333;
+            margin-top: 20px;
+            visibility: hidden; /* Inicialmente oculto */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="message" id="message"></div>
+    <button class="btn-surprise" id="btn-surprise">Sorpresa</button>
+
+    <!-- Texto para indicar que las imágenes son clickeables -->
+    <div class="image-text" id="image-text">Presiona la imagen</div>
+
+    <!-- Las imágenes aparecerán después del mensaje -->
+    <div class="image-gallery" id="image-gallery">
+        <a href="https://open.spotify.com/intl-es/track/7l4cSfrED7RrtT0t5CSOzv?si=c621aacdf1d940ff" target="_blank">
+            <img src="00-00.jpg" alt="Imagen 1">
+        </a>
+        <a href="https://open.spotify.com/intl-es/track/6kdCN6gTWLcLxmLXoUcwuI?si=450f3148b72e47d0" target="_blank">
+            <img src="eres.jpg" alt="Imagen 2">
+        </a>
+        <a href="https://open.spotify.com/intl-es/track/0HvmMGBqV75FRU285jD6rr?si=eda30fdba04a44a1" target="_blank">
+            <img src="hablame de ti.jpg" alt="Imagen 3">
+        </a>
+        <a href="https://open.spotify.com/intl-es/track/6b37xrsNCWYIUphFBazqD6?si=c55c848aeeef4a67" target="_blank">
+            <img src="me gustas tu.jpg" alt="Imagen 4">
+        </a>
+        <a href="https://open.spotify.com/intl-es/track/5ULNuAoAozLAc721tRcPbX?si=118880dd6f94410b" target="_blank">
+            <img src="te quiero.jpg" alt="Imagen 5">
+        </a>
+        <a href="https://open.spotify.com/intl-es/track/4IMBNHCtJWAAqEoOktyl3a?si=b2970b3ee48e4858" target="_blank">
+            <img src="unicos.jpg" alt="Imagen 6">
+        </a>
+    </div>
+
+    <script>
+        function showMessage() {
+            const message = document.getElementById('message');
+            const text = "Gracias por brindarme la oportunidad de conocerte, aquí te dejo unas canciones que me gustaría dedicarte.";
+            let index = 0;
+
+            function typeWriter() {
+                if (index < text.length) {
+                    message.textContent += text[index];
+                    index++;
+                    setTimeout(typeWriter, 100);
+                } else {
+                    document.getElementById('btn-surprise').style.display = "block"; // Muestra el botón cuando termina el texto
+                    setTimeout(function() {
+                        document.getElementById('image-gallery').style.visibility = "visible"; // Muestra las imágenes
+                        document.getElementById('image-text').style.visibility = "visible"; // Muestra el texto "Presiona la imagen"
+                    }, 500); // 500ms de retraso para que las imágenes y el texto aparezcan después del mensaje
+                }
+            }
+
+            typeWriter();
+        }       
+
+        showMessage();
+
+        document.getElementById('btn-surprise').addEventListener('click', function () {
+            window.location.href = 'corazon.html'; 
+        });
+    </script>
+</body>
+</html>
